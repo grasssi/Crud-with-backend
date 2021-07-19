@@ -1,0 +1,24 @@
+<form class="text-center px-lg-5 pt-0" style="color: #757575;">
+  <table id="dataTable" class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Discription</th>
+        <th>Quantite</th>
+        <th>prix</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let article of registartions ;let i=index ">
+      <td>{{i+1}}</td>
+      <td>{{article.nomArticle}}</td>
+      <td>{{article.descriptionArticle}}</td>
+      <td>{{article.quantityArticle}}</td>
+      <td>{{article.prixArticle}}</td>
+      <td>
+        <button  [routerLink]="['/updateArticle',i]" class="btn btn-info">Update</button>
+        <button (click)="onDelete(i)" class="btn btn-danger">Suprimer</button>
+      </td>
+    </tr>
+  </table>
+</form>
