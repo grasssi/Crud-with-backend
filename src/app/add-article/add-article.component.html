@@ -1,11 +1,12 @@
 <form [formGroup]="profileForm" (submit)='addArticle()' class="text-center offset-2 col-8" style="color: #757575;">
-  <!-- (name, description, quantity, price, photo)  -->
+
   <div class="form-group">
     <div class="col">
       <!-- Nom de produit -->
-      <div class="form-control">
+      <div >
         <label for="materialRegisterFormFirstName">Nom de produit</label>
-        <input type="text" id="materialRegisterFormFirstName" class="form-control" formControlName="nomArticle">
+        <input type="text" id="materialRegisterFormFirstName" class="form-control" formControlName="nomArticle"
+        [ngClass]="{'is-valid': submitted && !profileForm.controls.nomArticle.errors ,'is-invalid': submitted && profileForm.controls.nomArticle.errors}">
         <div class="invalid-feedback d-block" *ngIf="submitted && profileForm.controls.nomArticle.hasError('required')">Vérifiez votre saisie</div>
       </div>
     </div>
@@ -13,7 +14,8 @@
       <!-- description -->
       <div >
         <label for="materialRegisterFormLastName">Description</label>
-        <input type="text" id="materialRegisterFormLastName" class="form-control" formControlName="descriptionArticle" >
+        <input type="text" id="materialRegisterFormLastName" class="form-control" formControlName="descriptionArticle"
+        [ngClass]="{'is-valid': submitted && !profileForm.controls.descriptionArticle.errors ,'is-invalid': submitted && profileForm.controls.descriptionArticle.errors}">
         <div class="invalid-feedback d-block" *ngIf="submitted && profileForm.controls.descriptionArticle.hasError('required')">Vérifiez votre saisie
         </div>
              </div>
@@ -21,22 +23,24 @@
   </div>
 
   <!-- quantity -->
-  <div class="form-control">
+  <div >
     <label for="materialRegisterFormEmail">Quantite</label>
-    <input id="materialRegisterFormEmail" class="form-control" formControlName="quantityArticle" >
+    <input type="number" id="materialRegisterFormEmail" class="form-control" formControlName="quantityArticle"
+    [ngClass]="{'is-valid': submitted && !profileForm.controls.quantityArticle.errors ,'is-invalid': submitted && profileForm.controls.quantityArticle.errors}">
     <div class="invalid-feedback d-block" *ngIf="submitted && profileForm.controls.quantityArticle.hasError('required')">Vérifiez votre saisie</div>
      </div>
 
   <!-- prix -->
-  <div class="form-control">
+  <div >
     <label for="materialRegisterFormPassword">Prix</label>
-    <input id="materialRegisterFormPassword" class="form-control" formControlName="prixArticle" aria-describedby="materialRegisterFormPasswordHelpBlock">
+    <input type="number" id="materialRegisterFormPassword" class="form-control" formControlName="prixArticle" aria-describedby="materialRegisterFormPasswordHelpBlock"
+    [ngClass]="{'is-valid': submitted && !profileForm.controls.prixArticle.errors ,'is-invalid': submitted && profileForm.controls.prixArticle.errors}">
     <div class="invalid-feedback d-block" *ngIf="submitted && profileForm.controls.prixArticle.hasError('required')">Vérifiez votre saisie</div>
 
   </div>
 
 
   <!-- Save button -->
-  <button type="submit">Save</button>
+  <button type="submit" class="btn btn-info" >Save</button>
 
 </form>
