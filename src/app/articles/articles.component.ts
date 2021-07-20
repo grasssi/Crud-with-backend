@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleServiceService } from '../services/article-service.service';
 
 @Component({
   selector: 'app-articles',
@@ -6,17 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  registartions = JSON.parse(localStorage.getItem('registration') || '[]');
+  searchText:any;
 
 
-  constructor() { }
+  constructor(private ArticleService: ArticleServiceService) { }
+  registartions = this.ArticleService.getAllArticles();
 
   ngOnInit(): void {
-    console.log('reg222=', this.registartions)
   }
   onDelete(i: number) {
-    this.registartions.splice(i, 1);
-    localStorage.setItem('registration', JSON.stringify(this.registartions));
+    //with Services
+    this.ArticleService.deleteArticle(i);
+    //without Services
+    //  this.registartions.splice(i, 1);
+    //   localStorage.setItem('registration', JSON.stringify(this.registartions));
   }
 
 }

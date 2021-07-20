@@ -6,21 +6,25 @@ import { AppComponent } from './app.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { AddArticleComponent } from './add-article/add-article.component';
 import { UpdateArticleComponent } from './update-article/update-article.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticleServiceService } from './services/article-service.service';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArticlesComponent,
     AddArticleComponent,
-    UpdateArticleComponent
+    UpdateArticleComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ArticleServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

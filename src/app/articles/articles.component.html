@@ -1,6 +1,11 @@
-<table class="table table-hover table-striped">
+<form class="text-center" style="color: #757575;">
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching for a Product by id ....">
+</div>
+<table class="table table-hover table-striped position-absolute">
+  <caption>List of Products</caption>
   <thead>
-    <tr>
+    <tr class="table-info">
       <th scope="col">Index</th>
       <th scope="col">Name</th>
       <th scope="col">Discription</th>
@@ -10,8 +15,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let article of registartions ;let i=index ">
-      <td scope="row">{{i+1}}</td>
+    <tr *ngFor="let article of registartions | search :searchText ;let i=index ">
+      <th scope="row">{{i+1}}</th>
       <td scope="row">{{article.nomArticle}}</td>
       <td scope="row">{{article.descriptionArticle}}</td>
       <td scope="row">{{article.quantityArticle}}</td>
@@ -22,4 +27,5 @@
       </td>
     </tr>
   </tbody>
-  </table>
+</table>
+</form>
