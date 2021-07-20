@@ -5,16 +5,20 @@ import { ArticleServiceService } from '../services/article-service.service';
   name: 'search'
 })
 export class SearchPipe implements PipeTransform {
-constructor(private ArticleService: ArticleServiceService){ }
+
+  articlebyid:any
+  constructor(private ArticleService: ArticleServiceService) { }
   transform(value: any, args?: any): any {
-
-    console.log('serch=',value);
-
+    console.log('value0=', value);
     if (!value) return null;
     if (!args) return value;
     args = args.toLowerCase();
-value= this.ArticleService.getAricleByIndex(args);
-    console.log('value=',value);
-    return (value.nomArticle || value.descriptionArticle||value.quantityArticle||value.prixArticle)
-  }
+    this.articlebyid = this.ArticleService.getAricleByIndex(args);
+    console.log(' this.articlebyid =', this.articlebyid);
+    return (
+      this.articlebyid.nomArticle|| this.articlebyid.descriptionArticle||this.articlebyid .quantityArticle||this.articlebyid?.prixArticle
+      )
+
 }
+}
+//this.articlebyid?.value?.filter((item: any) => {//  })

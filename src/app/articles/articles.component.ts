@@ -7,7 +7,7 @@ import { ArticleServiceService } from '../services/article-service.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  searchText:any;
+  selectedPartner:string='';
 
 
   constructor(private ArticleService: ArticleServiceService) { }
