@@ -9,7 +9,7 @@ import { UpdateArticleComponent } from './update-article/update-article.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleServiceService } from './services/article-service.service';
 import { SearchPipe } from './pipes/search.pipe';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,8 @@ import { SearchPipe } from './pipes/search.pipe';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [ArticleServiceService],
   bootstrap: [AppComponent]

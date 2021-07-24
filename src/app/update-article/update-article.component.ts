@@ -16,25 +16,35 @@ export class UpdateArticleComponent implements OnInit {
     quantityArticle: new FormControl('', Validators.required),
     prixArticle: new FormControl('', Validators.required),
   });
-  index: any;
+  id: any;
   constructor(private activatetRoute: ActivatedRoute, private router: Router, private ArticleService: ArticleServiceService) { }
 
   ngOnInit(): void {
-    this.index = this.activatetRoute.snapshot.params.index;
-    const articleData = this.ArticleService.getAricleByIndex(this.index);
-    this.profileForm.patchValue(articleData)
+    this.id = this.activatetRoute.snapshot.params.id;
+    this.ArticleService.getAricleById(this.id).subscribe((response) => {
+      this.profileForm.patchValue(response)
+    },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
   updateProduct() {
     this.submitted = true;
     if (this.profileForm.invalid) { return };
     //with services
-    this.ArticleService.saveUpdate(this.index, this.profileForm.value);
+    this.ArticleService.saveUpdate(this.id, this.profileForm.value).subscribe((response) => {
+      this.router.navigate(['/articles'])
+    },
+      (error) => {
+        console.log(error);
+      }
+    );
     //without Service
     //remplacer len nouveau object avec lancien objet
-    // this.articles.splice(this.index, 1, this.profileForm.value);
+    // this.articles.splice(this.id, 1, this.profileForm.value);
     //mise a jour de localStorage
     // localStorage.setItem('registration', JSON.stringify(this.articles))
     //apres lupdate naviger vers le component Articles
-    this.router.navigate(['/articles'])
   }
 }

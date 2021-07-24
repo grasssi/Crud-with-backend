@@ -1,0 +1,25 @@
+{
+  "articles": [
+    {
+      "nomArticle": "Grassi",
+      "descriptionArticle": "Amine",
+      "quantityArticle": 112,
+      "prixArticle": 444,
+      "id": 1
+    },
+    {
+      "nomArticle": "test",
+      "descriptionArticle": "hatem",
+      "quantityArticle": 56,
+      "prixArticle": 21,
+      "id": 3
+    },
+    {
+      "nomArticle": "'r'r",
+      "descriptionArticle": "'f'rf",
+      "quantityArticle": 1,
+      "prixArticle": 2,
+      "id": 4
+    }
+  ]
+}

@@ -11,10 +11,10 @@ import { ArticleServiceService } from '../services/article-service.service';
 export class AddArticleComponent implements OnInit {
   submitted = false;
   profileForm = new FormGroup({
-    nomArticle: new FormControl('',Validators.required),
-    descriptionArticle: new FormControl('',Validators.required),
-    quantityArticle: new FormControl('',Validators.required),
-    prixArticle: new FormControl('',Validators.required),
+    nomArticle: new FormControl('', Validators.required),
+    descriptionArticle: new FormControl('', Validators.required),
+    quantityArticle: new FormControl('', Validators.required),
+    prixArticle: new FormControl('', Validators.required),
   });
   constructor(private router: Router, private articleService: ArticleServiceService) { }
 
@@ -24,12 +24,17 @@ export class AddArticleComponent implements OnInit {
     this.submitted = true;
     if (this.profileForm.invalid) { return };
     // with service
-    this.articleService.addArticle(this.profileForm.value)
+    this.articleService.addArticle(this.profileForm.value).subscribe((response) => {
+      this.router.navigate(['/articles']);
+    },
+      (error) => {
+        console.log(error);
+      }
+    )
     // without service
     // const registartions = JSON.parse(localStorage.getItem('registration') || '[]');
     // registartions.push(this.profileForm.value);
     // localStorage.setItem('registration', JSON.stringify(registartions));
     // console.log('reg=', registartions)
-    this.router.navigate(['/articles'])
   }
 }

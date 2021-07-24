@@ -11,7 +11,14 @@ export class SearchPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     if (!value) return null;
     if (!args) return value;
-    return [value[args-1]]
+    args = args.toLowerCase()
+        return value.filter((item: any) => {
+      return item?.nomArticle?.toLowerCase().includes(args) ||
+        item?.descriptionArticle?.toLowerCase().includes(args) ||
+        item?.quantityArticle == args ||
+        item?.prixArticle == args ||
+        item?.id == args;
+    });
   }
 }
 

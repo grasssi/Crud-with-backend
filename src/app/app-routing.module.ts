@@ -13,7 +13,7 @@ const routes: Routes = [
     component:ArticlesComponent
   },
   {
-    path: 'updateArticle/:index',
+    path: 'updateArticle/:id',
     component:UpdateArticleComponent
   },
 ];
