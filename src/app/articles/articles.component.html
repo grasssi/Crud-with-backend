@@ -22,7 +22,7 @@
       <td scope="row">{{article.quantityArticle}}</td>
       <td scope="row">{{article.prixArticle}}</td>
       <td>
-        <button [routerLink]="['/updateArticle',i]" class="btn btn-info">Update</button>
+        <button type="button" [routerLink]="['/updateArticle',i]" class="btn btn-info">Update</button>
         <button class="btn btn-danger" (click)="onDelete(i)">Suprimer</button>
       </td>
     </tr>

@@ -7,17 +7,20 @@ import { ArticleServiceService } from '../services/article-service.service';
   styleUrls: ['./articles.component.css']
 })
 export class ArticlesComponent implements OnInit {
-  selectedPartner:string='';
-
+  selectedPartner:any;
+  registartions:any;
 
   constructor(private ArticleService: ArticleServiceService) { }
-  registartions = this.ArticleService.getAllArticles();
 
   ngOnInit(): void {
+    this.registartions = this.ArticleService.getAllArticles();
   }
+
   onDelete(i: number) {
     //with Services
     this.ArticleService.deleteArticle(i);
+    this.ngOnInit(); // first way
+   // this.registartions =  this.ArticleService.getAllArticles() // second way
     //without Services
     //  this.registartions.splice(i, 1);
     //   localStorage.setItem('registration', JSON.stringify(this.registartions));

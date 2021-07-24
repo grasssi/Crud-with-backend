@@ -10,7 +10,6 @@ import { ArticleServiceService } from '../services/article-service.service';
 })
 export class UpdateArticleComponent implements OnInit {
   submitted = false;
-  articles = this.ArticleService.getAllArticles();
   profileForm = new FormGroup({
     nomArticle: new FormControl('', Validators.required),
     descriptionArticle: new FormControl('', Validators.required),
@@ -22,14 +21,14 @@ export class UpdateArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.index = this.activatetRoute.snapshot.params.index;
-    this.profileForm.patchValue(this.articles[this.index])
+    const articleData = this.ArticleService.getAricleByIndex(this.index);
+    this.profileForm.patchValue(articleData)
   }
   updateProduct() {
     this.submitted = true;
     if (this.profileForm.invalid) { return };
     //with services
     this.ArticleService.saveUpdate(this.index, this.profileForm.value);
-    this.ArticleService.getAricleByIndex(this.index);
     //without Service
     //remplacer len nouveau object avec lancien objet
     // this.articles.splice(this.index, 1, this.profileForm.value);
