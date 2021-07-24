@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ArticleServiceService } from '../services/article-service.service';
 
 @Component({
   selector: 'app-add-article',
@@ -15,17 +16,20 @@ export class AddArticleComponent implements OnInit {
     quantityArticle: new FormControl('',Validators.required),
     prixArticle: new FormControl('',Validators.required),
   });
-  constructor(private router: Router) { }
+  constructor(private router: Router, private articleService: ArticleServiceService) { }
 
   ngOnInit(): void {
   }
   addArticle() {
     this.submitted = true;
     if (this.profileForm.invalid) { return };
-    const registartions = JSON.parse(localStorage.getItem('registration') || '[]');
-    registartions.push(this.profileForm.value);
-    localStorage.setItem('registration', JSON.stringify(registartions));
-    console.log('reg=', registartions)
+    // with service
+    this.articleService.addArticle(this.profileForm.value)
+    // without service
+    // const registartions = JSON.parse(localStorage.getItem('registration') || '[]');
+    // registartions.push(this.profileForm.value);
+    // localStorage.setItem('registration', JSON.stringify(registartions));
+    // console.log('reg=', registartions)
     this.router.navigate(['/articles'])
   }
 }
